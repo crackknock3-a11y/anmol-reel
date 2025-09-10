@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Love for Anmol</title>
+<style>
+  body {
+    margin:0;
+    height:100vh;
+    background:#000;
+    color:#00ff95;
+    font-family: "Courier New", monospace;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  #screen {
+    max-width: 90%;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+  .cursor {
+    display:inline-block;
+    width:10px;
+    background:#00ff95;
+    margin-left:3px;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink {
+    50% { background: transparent; }
+  }
+</style>
+</head>
+<body>
+  <div id="screen"></div>
+  <script>
+    const lines = [
+      ">>> Initializing Love for Anmol...",
+      ">>> Compiling Shayari...\n",
+      "Tere naam se mehka hai har ek pal, Anmol,",
+      "Meri rooh ka noor hai tu, meri zindagi ka asal.\n",
+      "Tere bina adhoori lagti hai yeh dastaan,",
+      "Tu hai toh har safar hai gulistaan.\n",
+      "Teri muskaan se jagmagata hai sama,",
+      "Jaise chand ki roshni se roshan ho raat ka gagan.\n",
+      "Tu meri dua, tu mera gurur...",
+      ">>> Shayari completed.\n",
+      ">>> Generating Love Letter...\n",
+      "Dear Anmol,\n",
+      "Kabhi socha nahi tha ki meri zindagi mein koi aayega",
+      "jo meri khushi ki wajah ban jaayega...",
+      "Tum meri duaon ka sach ho, meri rooh ka sukoon ho.",
+      "Tum meri zindagi ka sabse Anmol tohfa ho.\n",
+      "Hamesha tumhara,",
+      "[Tumhara Naam]\n",
+      ">>> Love compiled successfully ❤"
+    ];
+
+    let i=0, text="", speed=55;
+    const screen = document.getElementById("screen");
+    const cursor = "<span class='cursor'></span>";
+
+    function typeLine() {
+      if(i < lines.length){
+        let line = lines[i] + "\n";
+        let j=0;
+        function typeChar(){
+          if(j < line.length){
+            text += line[j];
+            screen.innerHTML = text + cursor;
+            j++;
+            setTimeout(typeChar, speed);
+          } else {
+            i++;
+            setTimeout(typeLine, 400);
+          }
+        }
+        typeChar();
+      } else {
+        screen.innerHTML = text; // remove cursor at end
+      }
+    }
+    typeLine();
+  </script>
+</body>
+</html>
